@@ -20,6 +20,7 @@ services:
       - N8N_RUNNERS_ENABLED=true
       - GIT_USERNAME=${GIT_USERNAME}
       - GIT_PASSWORD=${GIT_PASSWORD}
+      - GH_TOKEN=${GIT_PASSWORD}
     volumes:
       - n8n_data:/home/node/.n8n
       - ./local-files:/home/node/local-files

@@ -3,6 +3,7 @@ set -e
 
 if [ -n "$GIT_USERNAME" ] && [ -n "$GIT_PASSWORD" ]; then
   git config --global credential.helper store
+  git config --global user.email "golson@foxhire.com" && git config --global user.name "Garrett Olson"
   echo "https://$GIT_USERNAME:$GIT_PASSWORD@github.com" > ~/.git-credentials
 fi
 
@@ -17,21 +18,9 @@ fi
 cd "$TEMP_REPO_DIR"
 
 # Only clone if the repo doesn't already exist (check for .git directory)
-if [ ! -d .git ]; then
-  git init
-  git clone https://github.com/FoxHireLLC/contracting.git .
-fi
-
-
-# Install Claude Code CLI
-# if [ ! -d /home/node/temp ]; then
-#   mkdir -p /home/node/temp
-# fi
-
-# curl -L https://github.com/anthropics/claude-code-cli/releases/latest/download/claude-code-linux-amd64 -o /home/node/temp/claude-code \
-#     && chmod +x /home/node/temp/claude-code
-
-# Add /home/node/temp to PATH so claude-code can be found
-#export PATH="/home/node/temp:$PATH"
+#if [ ! -d .git ]; then
+#  git init
+  git clone https://github.com/FoxHireLLC/Contracting.git .
+#fi
 
 exec "$@"
