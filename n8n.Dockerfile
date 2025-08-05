@@ -12,25 +12,18 @@ RUN apk update && apk add --no-cache \
     bash \
     openssl \
     libstdc++ \
-    icu-libs
+    icu-libs \
+    nano \
+    sudo
 
 # Optional: Use git-credential-store to avoid repeated GitHub prompts
 RUN git config --global credential.helper store
 
-# Optional: Add .netrc for GitHub authentication (less secure, but useful for automation)
-# This part assumes you have a .netrc file to COPY in, or inject it via build args or secrets
-# Uncomment and adjust if needed:
-# COPY .netrc /root/.netrc
-# RUN chmod 600 /root/.netrc
-
 RUN npm install -g @anthropic-ai/claude-code
 
 # Install .NET CLI (dotnet)
-RUN wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh \
-    && chmod +x dotnet-install.sh \
-    && ./dotnet-install.sh --channel LTS \
-    && rm dotnet-install.sh \
-    && ln -s /root/.dotnet/dotnet /usr/local/bin/dotnet
+RUN curl -Lo dotnet.tar.gz https://builds.dotnet.microsoft.com/dotnet/Sdk/9.0.303/dotnet-sdk-9.0.303-linux-musl-x64.tar.gz
+RUN tar zxf dotnet.tar.gz -C /usr/local/bin
 
 # Add GitHub CLI
 RUN apk add github-cli
@@ -39,6 +32,7 @@ RUN apk add github-cli
 COPY ./docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
+
 CMD ["n8n"]
 
 USER node

@@ -17,10 +17,6 @@ fi
 
 cd "$TEMP_REPO_DIR"
 
-# Only clone if the repo doesn't already exist (check for .git directory)
-#if [ ! -d .git ]; then
-#  git init
-  git clone https://github.com/FoxHireLLC/Contracting.git .
-#fi
+git clone https://github.com/FoxHireLLC/Contracting.git .
 
 exec "$@"
