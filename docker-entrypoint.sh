@@ -19,4 +19,11 @@ cd "$TEMP_REPO_DIR"
 
 git clone https://github.com/FoxHireLLC/Contracting.git .
 
+dotnet nuget add source \
+    "https://nuget.pkg.github.com/FoxHireLLC/index.json" \
+    --name "github" \
+    --username "$FH_NUGET_USERNAME" \
+    --password "$FH_NUGET_PASSWORD" \
+    --store-password-in-clear-text  
+
 exec "$@"
