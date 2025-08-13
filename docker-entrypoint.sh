@@ -8,7 +8,7 @@ if [ -n "$GIT_USERNAME" ] && [ -n "$GIT_PASSWORD" ]; then
 fi
 
 # Use a temp directory under /home/node so the node user has access
-TEMP_REPO_DIR="/home/node/temp/repos/contracting"
+TEMP_REPO_DIR="/home/node/temp/repos/Contracting"
 
 # Create the directory if it doesn't exist
 if [ ! -d "$TEMP_REPO_DIR" ]; then
