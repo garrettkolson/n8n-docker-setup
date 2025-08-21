@@ -40,6 +40,8 @@ RUN curl -O https://download.microsoft.com/download/7/6/d/76de322a-d860-4894-994
 RUN apk add --allow-untrusted msodbcsql18_18.5.1.1-1_amd64.apk
 RUN apk add --allow-untrusted mssql-tools18_18.4.1.1-1_amd64.apk
 
+COPY ./odbc.ini /etc/odbc.ini
+
 # Copy entrypoint script and set as entrypoint
 COPY ./docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
@@ -47,5 +49,5 @@ ENTRYPOINT ["/docker-entrypoint.sh"]
 
 CMD ["n8n"]
 
-#USER node
+USER node
 

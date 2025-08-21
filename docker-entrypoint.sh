@@ -19,6 +19,8 @@ cd "$TEMP_REPO_DIR"
 
 git clone https://github.com/FoxHireLLC/Contracting.git .
 
+dotnet nuget remove source "FoxHire Private NuGet"
+
 dotnet nuget add source \
     "https://nuget.pkg.github.com/FoxHireLLC/index.json" \
     --name "github" \
